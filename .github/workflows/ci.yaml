@@ -17,7 +17,9 @@ jobs:
         run: npm install
       - name: Test
         run: npm run test
-      - uses: actions/upload-artifact@v1
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
         with:
           name: html reporter
-          path: ./report/reports/index.html
+          path: ./report/reports
+          retention-days: 5
