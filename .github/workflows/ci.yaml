@@ -2,7 +2,7 @@ name: CI
 on: [push, pull_request]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-12
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -17,4 +17,4 @@ jobs:
         if: failure()
         with:
           name: logs
-          path: logs
+          path: ./report/reports/index.html
