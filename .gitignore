@@ -1,16 +1,19 @@
+#report
+report/
 # Optional npm cache directory
 .npm
 # git
 .gitconfig
 
 # Dependency directories
-./node_modules
-./jspm_packages
+node_modules/
+jspm_packages/
 
 # IDE
 *.iml
 .vscode
 .idea
+.idea/codeStyles/codeStyleConfig.xml
 
 # Runtime data
 pids

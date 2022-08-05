@@ -1,6 +1,8 @@
 import type { Options } from '@wdio/types'
 
 const tsConfig = require("./tsconfig.json");
+const { generate } = require('multiple-cucumber-html-reporter');
+const { removeSync } = require('fs-extra');
 export const config: Options.Testrunner = {
     //
     // ====================
@@ -163,7 +165,13 @@ export const config: Options.Testrunner = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
-    reporters: ['spec'],
+    reporters: ['spec',
+        [ 'cucumberjs-json', {
+            jsonFolder: './report',
+            language: 'en',
+        },
+        ],
+    ],
 
 
     //
@@ -213,6 +221,13 @@ export const config: Options.Testrunner = {
      */
     // onPrepare: function (config, capabilities) {
     // },
+    /**
+     * Gets executed once before all workers get launched.
+     */
+    onPrepare: () => {
+        // Remove the `.tmp/` folder that holds the json and report files
+        removeSync('./report');
+    },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.
@@ -355,6 +370,17 @@ export const config: Options.Testrunner = {
      */
     // onComplete: function(exitCode, config, capabilities, results) {
     // },
+    onComplete: () => {
+        // Generate the report when it all tests are done
+        generate({
+            // Required
+            // This part needs to be the same path where you store the JSON files
+            // default = '.tmp/json/'
+            jsonDir: './report',
+            reportPath: './report/reports/',
+            // for more options see https://github.com/wswebcreation/multiple-cucumber-html-reporter#options
+        });
+    }
     /**
     * Gets executed when a refresh happens.
     * @param {String} oldSessionId session ID of the old session
