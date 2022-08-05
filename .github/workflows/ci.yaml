@@ -1,9 +1,7 @@
 name: CI
 on:
   schedule:
-    - cron: '42 18 * * 1-5'
-  push:
-  pull_request:
+    - cron: '57 16 * * 1-5'
 jobs:
   build:
     runs-on: macos-12
