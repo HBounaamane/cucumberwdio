@@ -4,8 +4,8 @@
 .gitconfig
 
 # Dependency directories
-node_modules/
-jspm_packages/
+./node_modules
+./jspm_packages
 
 # IDE
 *.iml
@@ -24,7 +24,6 @@ pids
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build
 dist
-storybook-static
 .stats.json
 .stats.json-e
 
@@ -33,12 +32,6 @@ storybook-static
 # TypeScript v1 declaration files
 typings/
 
-
-# Optional eslint cache
-.eslintcache
-
-# Optional REPL history
-.node_repl_history
 
 # Output of 'npm pack'
 *.tgz
