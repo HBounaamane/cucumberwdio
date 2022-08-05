@@ -1,0 +1,25 @@
+name: CI
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '00 22 * * 1-5'
+jobs:
+  build:
+    runs-on: macos-12
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16.13.0
+      - name: Install
+        run: npm install
+      - name: Test
+        run: npm run test
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: html reporter
+          path: ./report/reports
+          retention-days: 5
