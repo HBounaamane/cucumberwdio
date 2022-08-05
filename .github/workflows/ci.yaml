@@ -21,4 +21,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: html reporter
-          path: ./report/reports/*.html
+          path: ./report/reports
+          retention-days: 5
