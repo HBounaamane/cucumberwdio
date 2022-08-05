@@ -1,7 +1,7 @@
 name: CI
 on:
   schedule:
-    - cron: '38 17 * * 1-5'
+    - cron: '42 18 * * 1-5'
   push:
   pull_request:
 jobs:
