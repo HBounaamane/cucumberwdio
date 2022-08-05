@@ -21,5 +21,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: html reporter
-          path: ./report/reports
-          retention-days: 5
+          path: ./report/reports/*-google-searching.html
